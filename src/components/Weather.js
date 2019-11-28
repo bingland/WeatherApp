@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { Component } from 'react';
 
-function Weather() {
+function Weather(props) {
+  
+  console.log(props.data)
   return (
     <div>Weather</div>
   );

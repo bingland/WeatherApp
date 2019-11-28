@@ -5,20 +5,39 @@ import Weather from './components/Weather'
 
 function App() {
 
-    fetch("https://api.openweathermap.org/data/2.5/weather?callback=test&id=2172797&units=%2522metric%2522%20or%20%2522imperial%2522&q=London%252Cuk&APPID=58ee50dbbe686e7219635112c7593425", {
-    "method": "GET"
-  })
-  .then(response => {
-    console.log(response);
-  })
-  .catch(err => {
-    console.log(err);
-  });
+  var info = {};
+
+  async function fetchData () {
+    const res = await fetch("https://api.openweathermap.org/data/2.5/weather?id=6167865&appid=58ee50dbbe686e7219635112c7593425");
+    const data = await res.json();
+    info = data;
+    console.log(info)
+    updateInfo()
+  }
+
+  function updateInfo () {
+
+  }
+
+  fetchData();
+  
+
+  // !!!! You may possibly want to change the syntax of this fetch using async / await, and also assign it to info directly.
+  // fetch("https://api.openweathermap.org/data/2.5/weather?id=6167865&appid=58ee50dbbe686e7219635112c7593425")
+  // .then(response => {
+  //   response.json().then(data => {
+  //     info = data;
+  //     console.log(data)
+  //   })
+  // })
+  // .catch(err => {
+  //   console.log(err);
+  // });
 
   return (
     <div className="App">
       <Canvas />
-      <Weather />
+      <Weather data={info}/>
     </div>
   );
 }
