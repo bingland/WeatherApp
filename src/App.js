@@ -1,25 +1,27 @@
-import React from 'react';
+import React, { Component } from 'react';
 import './App.css';
 import Canvas from './components/Canvas'
 import Weather from './components/Weather'
 
-function App() {
+class App extends Component {
 
-  var info = {};
+  state = {
+    info: {}
+  }
 
-  async function fetchData () {
+  async fetchData () {
     const res = await fetch("https://api.openweathermap.org/data/2.5/weather?id=6167865&appid=58ee50dbbe686e7219635112c7593425");
     const data = await res.json();
-    info = data;
-    console.log(info)
-    updateInfo()
+    this.setState({
+      info: data
+    })
   }
 
-  function updateInfo () {
+  
 
+  async componentDidMount() {
+    this.fetchData()
   }
-
-  fetchData();
   
 
   // !!!! You may possibly want to change the syntax of this fetch using async / await, and also assign it to info directly.
@@ -33,13 +35,14 @@ function App() {
   // .catch(err => {
   //   console.log(err);
   // });
-
-  return (
-    <div className="App">
-      <Canvas />
-      <Weather data={info}/>
-    </div>
-  );
+  render () {
+    return (
+      <div className="App">
+        <Canvas />
+        <Weather data={this.state.info}/>
+      </div>
+    );
+  }
 }
 
 export default App;
