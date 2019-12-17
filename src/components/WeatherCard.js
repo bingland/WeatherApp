@@ -7,6 +7,41 @@ class WeatherCard extends Component {
     valid: true
   }
 
+  timeConverter = (UNIX_timestamp) => {
+    var a = new Date(UNIX_timestamp * 1000);
+    var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+    var year = a.getFullYear();
+    var month = months[a.getMonth()];
+    var date = a.getDate();
+    var hour = a.getHours();
+    var min = a.getMinutes();
+    var time = date + ' ' + month + ' ' + year + ' ' + hour + ':' + min ;
+    return time;
+  }
+
+
+
+  // ! FIX THIS!!!!!!!
+
+
+  currentTime = (offset) => {
+    // create Date object for current location
+    var d = new Date();
+
+    // convert to msec
+    // add local time zone offset
+    // get UTC time in msec
+    var utc = d.getTime() + (d.getTimezoneOffset() * 60000);
+    console.log(utc)
+
+    // create new Date object for different city
+    // using supplied offset
+    var nd = new Date(utc + (3600000*offset));
+
+    // return time as a string
+    return nd.toLocaleString();
+  }
+
   getWeather = () => {
     const url = 'https://api.openweathermap.org/data/2.5/weather?q=' + this.props.name + '&appid=58ee50dbbe686e7219635112c7593425'
     fetch(url)
@@ -27,13 +62,28 @@ class WeatherCard extends Component {
         }
     })
     .then((data) => {
-      this.setState({
-          // * SET MAIN VALUES *
-          name: data.name,
-          temp: data.main.temp,
-          loaded: true
-      })
-      console.log(data)
+
+        
+
+        this.setState({
+            // * SET MAIN VALUES *
+            data: data,
+            loaded: true,
+            name: data.name,
+            time: this.currentTime(data.timezone),
+            temperature: data.main.temp,
+            feelsLike: data.main.feels_like,
+            high: data.main.temp_max,
+            low: data.main.temp_min,
+            weather: data.weather[0].main,
+            description: data.weather[0].description,
+            icon: data.weather[0].icon,
+            country: data.sys.country,
+            sunrise: this.timeConverter(data.sys.sunrise),
+            sunset: this.timeConverter(data.sys.sunset)
+            //name, temperature, feelsLike, high, low, weather, description, icon, country, sunrise, sunset
+        })
+        console.log(data)
     })
     .catch(error => {
         console.log(error)
@@ -46,25 +96,36 @@ class WeatherCard extends Component {
   }
 
   render() {
-    
+
     return (
-        <div className="wCard">
-            {this.state.loaded ? (
-                //loaded
-                this.state.valid ? (
-                    //valid query
-                    // * OUTPUT DATA * 
-                    <h1>{this.state.name}</h1>,
-                    <h2>{this.state.temp}</h2>
-                ) : (
-                    //invalid query
-                    <div>Invalid Name!</div>
-                )
+        this.state.loaded ? (
+            //loaded
+            this.state.valid ? (
+                //valid query
+                // * OUTPUT DATA * 
+                //name, temperature, feelsLike, high, low, weather, description, icon, country, sunrise, sunset
+                <div className="wCard">
+                    <h1>City Name: {this.state.name}</h1>
+                    <h2>Temperature: {this.state.temperature}</h2>
+                    <h2>Time: {this.state.time}</h2>
+                    <h2>Feels like: {this.state.feelsLike}</h2>
+                    <h2>High: {this.state.high}</h2>
+                    <h2>Low: {this.state.low}</h2>
+                    <h2>Weather: {this.state.weather}</h2>
+                    <h2>Description: {this.state.description}</h2>
+                    <h2>Icon: <img src={`http://openweathermap.org/img/wn/${this.state.icon}@2x.png`} /></h2>
+                    <h2>Country: {this.state.country}</h2>
+                    <h2>Sunrise: {this.state.sunrise}</h2>
+                    <h2>Sunset: {this.state.sunset}</h2>
+                </div>
             ) : (
-                // unloaded 
-                <div>loading...</div>
-            )}
-        </div>
+                //invalid query
+                <div>Invalid Name!</div>
+            )
+        ) : (
+            // unloaded 
+            <div>loading...</div>
+        )
     )
   }
 }
