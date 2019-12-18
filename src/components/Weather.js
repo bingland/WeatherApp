@@ -7,20 +7,24 @@ class Weather extends Component {
   state = {
     cards: [
       {
-        type: 'card',
-        name: 'Toronto',
-        id: 1
-      },
-      {
         type: 'entry',
-        id: 2
+        id: 1
       }
     ]
   }
 
   addCard = (location) => {
-    console.log(location)
-    console.log('hello?//')
+    //replace the entry card with add card
+    let newArr = this.state.cards.filter(card => card.type === 'card')
+    let newCard = {
+      type: 'card',
+      name: location,
+      id: this.state.cards.length
+    }
+    this.setState({
+      cards: [...newArr, newCard]
+    })
+    console.log(this.state.cards)
   }
 
   render() {

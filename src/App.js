@@ -25,8 +25,12 @@ class App extends Component {
   render () {
     return (
       <div className="App">
+        
         <Canvas />
-        <Weather/>
+
+        <div className="interface">
+          <Weather/>
+        </div>
       </div>
     );
   }

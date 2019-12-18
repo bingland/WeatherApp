@@ -8,7 +8,6 @@ export default class EntryCard extends Component {
 
     handleChange = (e) => {
         this.setState({value: e.target.value})
-        console.log(this.state.value)
     }
 
     checkCity = (e) => {
@@ -23,7 +22,7 @@ export default class EntryCard extends Component {
                 console.log('valid! response is okkkkkk')
 
                 //TODO: can't read property bind of undefined
-                this.props.addCard().bind(this)
+                this.props.addCard(this.state.value)
                 
             } else {
                 throw "invalid response"

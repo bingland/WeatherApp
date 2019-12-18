@@ -63,8 +63,6 @@ class WeatherCard extends Component {
     })
     .then((data) => {
 
-        
-
         this.setState({
             // * SET MAIN VALUES *
             data: data,
