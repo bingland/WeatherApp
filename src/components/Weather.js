@@ -18,8 +18,9 @@ class Weather extends Component {
     ]
   }
 
-  locationExists = () => {
-    console.log('function is being fired!!!!')
+  addCard = (location) => {
+    console.log(location)
+    console.log('hello?//')
   }
 
   render() {

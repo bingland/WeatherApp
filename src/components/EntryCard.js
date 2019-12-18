@@ -20,17 +20,14 @@ export default class EntryCard extends Component {
         //check for 
         .then((res) => {
             if (res.ok) {
-                console.log('valid! response is ok')
-                this.setState({
-                    valid: true
-                })
+                console.log('valid! response is okkkkkk')
+
+                //TODO: can't read property bind of undefined
+                this.props.addCard().bind(this)
                 
             } else {
-                this.setState({
-                    valid: false
-                })
                 throw "invalid response"
-                
+                // TODO: Tell the user that their query is invalid
             }
         })
         .catch(error => {
