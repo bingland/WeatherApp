@@ -113,7 +113,7 @@ class WeatherCard extends Component {
                     <h2>Low: {this.state.low}</h2>
                     <h2>Weather: {this.state.weather}</h2>
                     <h2>Description: {this.state.description}</h2>
-                    <h2>Icon: <img src={`http://openweathermap.org/img/wn/${this.state.icon}@2x.png`} /></h2>
+                    <h2>Icon: <img src={`http://openweathermap.org/img/wn/${this.state.icon}@2x.png`} alt="weather icon" /></h2>
                     <h2>Country: {this.state.country}</h2>
                     <h2>Sunrise: {this.state.sunrise}</h2>
                     <h2>Sunset: {this.state.sunset}</h2>
