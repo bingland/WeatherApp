@@ -27,7 +27,7 @@ class App extends Component {
 
         <div className="interface">
           <Weather ref={this.child}/>
-          <button onClick={this.onClick}>+</button>
+          <button className="addButton" onClick={this.onClick}>+</button>
         </div>
       </div>
     );

@@ -103,20 +103,22 @@ class WeatherCard extends Component {
                 //valid query
                 // * OUTPUT DATA * 
                 //name, temperature, feelsLike, high, low, weather, description, icon, country, sunrise, sunset
-                <div className="wCard">
-                    <DelCard delCard={this.props.delCard.bind(this, this.props.id)} />
-                    <h1>City Name: {this.state.name}</h1>
-                    <h2>Temperature: {this.state.temperature}</h2>
-                    <h2>Time: {this.state.time}</h2>
-                    <h2>Feels like: {this.state.feelsLike}</h2>
-                    <h2>High: {this.state.high}</h2>
-                    <h2>Low: {this.state.low}</h2>
-                    <h2>Weather: {this.state.weather}</h2>
-                    <h2>Description: {this.state.description}</h2>
-                    <h2>Icon: <img src={`http://openweathermap.org/img/wn/${this.state.icon}@2x.png`} alt="weather icon" /></h2>
-                    <h2>Country: {this.state.country}</h2>
-                    <h2>Sunrise: {this.state.sunrise}</h2>
-                    <h2>Sunset: {this.state.sunset}</h2>
+                <div className="wCard weatherCard">
+                    <div className="cardContent">
+                        <DelCard delCard={this.props.delCard.bind(this, this.props.id)} />
+                        <h1>{this.state.name}</h1>
+                        <h2>Temperature: {this.state.temperature}</h2>
+                        <h2>Time: {this.state.time}</h2>
+                        <h2>Feels like: {this.state.feelsLike}</h2>
+                        <h2>High: {this.state.high}</h2>
+                        <h2>Low: {this.state.low}</h2>
+                        <h2>Weather: {this.state.weather}</h2>
+                        <h2>Description: {this.state.description}</h2>
+                        <h2>Icon: <img src={`http://openweathermap.org/img/wn/${this.state.icon}@2x.png`} alt="weather icon" /></h2>
+                        <h2>Country: {this.state.country}</h2>
+                        <h2>Sunrise: {this.state.sunrise}</h2>
+                        <h2>Sunset: {this.state.sunset}</h2>
+                    </div>
                 </div>
             ) : (
                 //invalid query

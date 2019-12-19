@@ -4,7 +4,7 @@ export default class DelCard extends Component {
     render() {
         return (
             <div>
-                <button onClick={this.props.delCard}>Delete Me!</button>
+                <button className="delButton" onClick={this.props.delCard}>X</button>
             </div>
         )
     }
