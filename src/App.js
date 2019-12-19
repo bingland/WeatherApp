@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import './reset.css'
-import Canvas from './components/Canvas'
+import Background from './components/Background'
 import Weather from './components/Weather'
 
 class App extends Component {
@@ -23,7 +23,7 @@ class App extends Component {
     return (
       <div className="App">
 
-        <Canvas />
+        <Background />
 
         <div className="interface">
           <Weather ref={this.child}/>
