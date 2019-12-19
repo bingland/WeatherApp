@@ -1,9 +1,11 @@
 import React, { Component } from 'react'
+import DelCard from './DelCard'
+
 
 export default class EntryCard extends Component {
-    
+
     state = {
-        value: "Type to change me!"
+        value: ""
     }
 
     handleChange = (e) => {
@@ -37,9 +39,10 @@ export default class EntryCard extends Component {
     render() {
         return (
             <div className="wCard">
+                <DelCard delCard={this.props.delCard.bind(this)} />
                 <form onSubmit={this.checkCity}>
                     <h3>Add a location:</h3>
-                    <input type="text" value={this.state.value} onChange={this.handleChange} /> 
+                    <input type="text" placeholder="Search for a city!" value={this.state.value} onChange={this.handleChange} /> 
                     <input type="submit" value="Submit"></input>
                 </form>
             </div>

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import DelCard from './DelCard'
 
 class WeatherCard extends Component {
   
@@ -103,6 +104,7 @@ class WeatherCard extends Component {
                 // * OUTPUT DATA * 
                 //name, temperature, feelsLike, high, low, weather, description, icon, country, sunrise, sunset
                 <div className="wCard">
+                    <DelCard delCard={this.props.delCard.bind(this, this.props.id)} />
                     <h1>City Name: {this.state.name}</h1>
                     <h2>Temperature: {this.state.temperature}</h2>
                     <h2>Time: {this.state.time}</h2>
