@@ -24,7 +24,7 @@ export default class EntryCard extends Component {
                 console.log('valid! response is okkkkkk')
 
                 //TODO: can't read property bind of undefined
-                this.props.addCard(this.state.value)
+                this.props.addCard(this.state.value, this.props.id)
                 
             } else {
                 throw "invalid response"
@@ -40,7 +40,7 @@ export default class EntryCard extends Component {
         return (
             <div className="wCard entryCard">
                 <div className="cardContent">
-                    <DelCard delCard={this.props.delCard.bind(this)} />
+                    <DelCard delCard={this.props.delCard.bind(this, this.props.id)} />
                     <form onSubmit={this.checkCity}>
                         <h3>Add a location:</h3>
                         <input type="text" placeholder="Search for a city!" value={this.state.value} onChange={this.handleChange} /><br /> 

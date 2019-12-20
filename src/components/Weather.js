@@ -13,18 +13,20 @@ class Weather extends Component {
     ]
   }
 
-  addCard = (location) => {
+  addCard = (location, theid) => {
     //replace the entry card with add card
-    let newArr = this.state.cards.filter(card => card.type === 'card')
+    // ! FIX DUPLICATION BUG
+    console.log(theid)
+    let newArr = this.state.cards
     let newCard = {
       type: 'card',
       name: location,
-      id: this.state.cards.length
+      id: theid
     }
+    newArr.splice((theid-1), 1, newCard)
     this.setState({
-      cards: [...newArr, newCard]
+      cards: newArr
     })
-    console.log(this.state.cards)
   }
 
   addEntryCard = () => {
@@ -33,24 +35,38 @@ class Weather extends Component {
       type: 'entry',
       id: this.state.cards.length + 1
     }
+    console.log('newcard id is ' + newCard.id)
     let curCards = this.state.cards
     this.setState({
       cards: [...curCards, newCard]
     })
   } 
 
-  delCard = (key) => {
-    console.log('deleting card...')
-    console.log(key)
+  delCard = (id) => {
+    console.log('deleting card' + id)
+    this.setState({
+      cards: [...this.state.cards.filter(card => card.id !== id)]
+    }, this.adjustIds)
+  }
+
+  adjustIds = () => {
+    // * adjust all of the id's since cards got deleted
+    this.setState({
+      cards: this.state.cards.map((card, index) => {
+        if (card.id !== index + 1) {
+          card.id = index + 1
+        }
+        return card
+      })
+    })
   }
 
   render() {
     return this.state.cards.map((card) => {
       if (card.type === 'card') {
-        console.log('adding card...?')
-        return <WeatherCard name={card.name} key={card.id} delCard={this.delCard} />
+        return <WeatherCard name={card.name} key={card.id} id={card.id} delCard={this.delCard} />
       } else if (card.type === 'entry') {
-        return <EntryCard key={card.id} addCard={this.addCard} delCard={this.delCard} />
+        return <EntryCard key={card.id} id={card.id} addCard={this.addCard} delCard={this.delCard} />
       } else {
         return <p>Card type error.</p>
       }

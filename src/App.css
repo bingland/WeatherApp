@@ -16,6 +16,7 @@ body {
 
 .interface {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-items: center;
 }
@@ -30,6 +31,11 @@ body {
   color: white;
   z-index: 999999;
 }
+.addButton:focus {
+  outline: none;
+}
+
+
 .delButton {
   width: 25px;
   height: 25px;
@@ -42,6 +48,9 @@ body {
   top: -12.5px;
   right: -12.5px;
   z-index: 9999;
+}
+.delButton:focus {
+  outline: none;
 }
 
 .wCard {
@@ -75,6 +84,10 @@ body {
   padding: 5px;
   font-size: 20px;
 }
+.entryCard input[type=text]:focus {
+  outline: none;
+}
+
 .entryCard input[type=submit] {
   margin: 5px;
   padding:5px 15px; 
@@ -82,4 +95,7 @@ body {
   cursor:pointer;
   border-radius: 5px; 
   font-size: 20px;
+}
+.entryCard input[type=submit]:focus {
+  outline: none;
 }
