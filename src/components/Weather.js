@@ -64,9 +64,9 @@ class Weather extends Component {
   render() {
     return this.state.cards.map((card) => {
       if (card.type === 'card') {
-        return <WeatherCard name={card.name} key={card.id} id={card.id} delCard={this.delCard} />
+        return <div className="wCard weatherCard"><WeatherCard name={card.name} key={card.id} id={card.id} delCard={this.delCard} /></div>
       } else if (card.type === 'entry') {
-        return <EntryCard key={card.id} id={card.id} addCard={this.addCard} delCard={this.delCard} />
+        return <div className="wCard entryCard"><EntryCard key={card.id} id={card.id} addCard={this.addCard} delCard={this.delCard} /></div>
       } else {
         return <p>Card type error.</p>
       }

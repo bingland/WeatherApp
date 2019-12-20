@@ -10,8 +10,15 @@ body {
   width: 100%;
   height: 100%;
   z-index: -9999px;
-  background-color: rgb(101, 139, 182);
   position: absolute;
+  overflow: hidden;
+}
+.background video {
+  width: auto;
+  height: auto;
+  min-width: 100vh;
+  min-height: 100vh;
+  z-index: 1;
 }
 
 .interface {
@@ -54,7 +61,6 @@ body {
 }
 
 .wCard {
-  border: 1px solid black;
   height: 500px;
   width: 300px;
   margin: 20px;
@@ -64,7 +70,7 @@ body {
   align-items: center;
   justify-content: center;
   border-radius: 10px;
-  background-color: white;
+  background-color: rgba(255, 255, 255, 0.88);
 }
 
 /* Weather Card */

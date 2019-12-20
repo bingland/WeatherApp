@@ -38,15 +38,13 @@ export default class EntryCard extends Component {
     
     render() {
         return (
-            <div className="wCard entryCard">
-                <div className="cardContent">
-                    <DelCard delCard={this.props.delCard.bind(this, this.props.id)} />
-                    <form onSubmit={this.checkCity}>
-                        <h3>Add a location:</h3>
-                        <input type="text" placeholder="Search for a city!" value={this.state.value} onChange={this.handleChange} /><br /> 
-                        <input type="submit" value="Submit"></input>
-                    </form>
-                </div>
+            <div className="cardContent">
+                <DelCard delCard={this.props.delCard.bind(this, this.props.id)} />
+                <form onSubmit={this.checkCity}>
+                    <h3>Add a location:</h3>
+                    <input type="text" placeholder="Search for a city!" value={this.state.value} onChange={this.handleChange} /><br /> 
+                    <input type="submit" value="Submit"></input>
+                </form>
             </div>
         )
     }
