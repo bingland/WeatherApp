@@ -8,6 +8,7 @@
 
 * {
   font-family: 'OpenSansRegular', Arial, Helvetica, sans-serif;
+  color: rgb(34, 34, 34);
 }
 
 .background {
@@ -74,15 +75,16 @@
   align-items: center;
   justify-content: center;
   border-radius: 15px;
-  background-color: rgba(236, 236, 236, 0.719);
+  background-color: rgba(236, 236, 236, 0.918);
   font-family: 'OpenSansRegular', Arial, Helvetica, sans-serif;
-
+  box-shadow: 10px 10px 19px 5px rgba(0,0,0,0.08);
 }
 
 /* Weather Card */
 .weatherCard {
   text-align: center;
 }
+
 .weatherCard h1 {
   font-weight: bold;
   font-size: 50px;
@@ -90,11 +92,11 @@
 }
 .weatherCard h2 {
   font-size: 22px;
-  padding: 2.5px;
+  padding: 5px;
 }
 .weatherCard h3 {
   font-size: 15px;
-  padding: 2.5px;
+  padding: 5px;
 }
 
 /* Entry Card */ 

@@ -44,7 +44,7 @@ class WeatherCard extends Component {
   }
 
   getWeather = () => {
-    const url = 'https://api.openweathermap.org/data/2.5/weather?q=' + this.props.name + '&appid=58ee50dbbe686e7219635112c7593425'
+    const url = 'https://api.openweathermap.org/data/2.5/weather?q=' + this.props.name + '&units=imperial&appid=58ee50dbbe686e7219635112c7593425'
     fetch(url)
     //check for 
     .then((res) => {
@@ -108,11 +108,11 @@ class WeatherCard extends Component {
                     <h1>{this.state.name}</h1>
                     <h2>Country: {this.state.country}</h2>
                     <img src={`http://openweathermap.org/img/wn/${this.state.icon}@2x.png`} alt="weather icon" />
-                    <h1>{this.state.temperature}</h1>
-                    <h2>{this.state.description}</h2>
-                    <h3>Feels like: {this.state.feelsLike}</h3>
-                    <h3>High: {this.state.high}</h3>
-                    <h3>Low: {this.state.low}</h3>
+                    <h1>{Math.round(this.state.temperature)}&#176;</h1>
+                    <h2 style={{textTransform: 'capitalize'}}>{this.state.description}</h2>
+                    <h3>Feels like: {Math.round(this.state.feelsLike)}&#176;</h3>
+                    <h3>High: {Math.round(this.state.high)}&#176;</h3>
+                    <h3>Low: {Math.round(this.state.low)}&#176;</h3>
                     <h3>Sunrise: {this.state.sunrise}</h3>
                     <h3>Sunset: {this.state.sunset}</h3>
                 </div>
@@ -122,7 +122,7 @@ class WeatherCard extends Component {
             )
         ) : (
             // unloaded 
-            <div>loading...</div>
+            <div></div>
         )
     )
   }

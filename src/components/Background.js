@@ -10,7 +10,7 @@ class Background extends React.Component {
     return(
       <div className="background">
         <video width="100%" autoPlay loop muted>
-          <source src={require('../video/rain.mp4')} type="video/mp4" />
+          <source src={require('../video/rain3.mp4')} type="video/mp4" />
         </video>
       </div>
     )
