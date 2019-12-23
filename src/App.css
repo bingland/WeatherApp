@@ -1,14 +1,9 @@
 /* fonts */
-/* Open Sans Regular */
-@font-face {
-  font-family: 'OpenSansRegular';
-  src: url('fonts/OpenSans-Regular.ttf') format('truetype'),
-       url('fonts/opensans-regular-webfont.woff') format('woff');
-}
+@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700&display=swap');
 
 * {
-  font-family: 'OpenSansRegular', Arial, Helvetica, sans-serif;
-  color: rgb(34, 34, 34);
+  font-family: 'Source Sans Pro', sans-serif;
+  color: #333333;
 }
 
 .background {
@@ -31,6 +26,8 @@
   align-items: center;
   justify-content: center;
   height: 100vh;
+  flex-wrap: nowrap;
+  overflow-x: auto;
 }
 
 .addButton {
@@ -42,9 +39,15 @@
   font-size: 20px;
   color: white;
   z-index: 999999;
+  box-shadow: 10px 10px 19px 5px rgba(0,0,0,0.12);
+  flex: 0 0 auto;
 }
 .addButton:focus {
   outline: none;
+}
+.addButton:hover {
+  background-color: rgb(100, 100, 100);
+  cursor: pointer;
 }
 
 
@@ -64,6 +67,10 @@
 .delButton:focus {
   outline: none;
 }
+.delButton:hover {
+  background-color: rgb(221, 98, 98);
+  cursor: pointer;
+}
 
 .wCard {
   height: 600px;
@@ -75,28 +82,44 @@
   align-items: center;
   justify-content: center;
   border-radius: 15px;
-  background-color: rgba(236, 236, 236, 0.918);
-  font-family: 'OpenSansRegular', Arial, Helvetica, sans-serif;
+  background-color: rgba(255, 255, 255, 0.89);
+  font-family: 'Source Sans Pro', sans-serif;
   box-shadow: 10px 10px 19px 5px rgba(0,0,0,0.08);
+  cursor: pointer;
+  flex: 0 0 auto;
 }
 
 /* Weather Card */
 .weatherCard {
   text-align: center;
 }
-
+.weatherCard img {
+  width: 130px;
+  padding: 30px;
+}
 .weatherCard h1 {
   font-weight: bold;
   font-size: 50px;
   padding: 2.5px;
 }
+.weatherCard .temph1 {
+  font-size: 80px;
+  padding: 5px;
+  padding-top: 0;
+  font-weight: 100;
+}
 .weatherCard h2 {
-  font-size: 22px;
+  font-size: 30px;
   padding: 5px;
 }
 .weatherCard h3 {
   font-size: 15px;
-  padding: 5px;
+  padding: 7px;
+  
+}
+.weatherCard .split {
+  display: inline;
+  padding: 10px;
 }
 
 /* Entry Card */ 
@@ -106,12 +129,13 @@
 }
 .entryCard h3 {
   padding: 10px;
-  font-size: 27px;
+  font-size: 35px;
+  font-weight: bold;
 }
 .entryCard input[type=text] {
   padding: 10px;
   font-size: 20px;
-  border: none;
+  border: 1px solid #333333;
   border-radius: 10px;
 }
 .entryCard input[type=text]:focus {

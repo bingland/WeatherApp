@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import DelCard from './DelCard'
+import { getCountryName } from './utils/convertCountry'
 
 class WeatherCard extends Component {
   
@@ -10,37 +11,15 @@ class WeatherCard extends Component {
 
   timeConverter = (UNIX_timestamp) => {
     var a = new Date(UNIX_timestamp * 1000);
-    var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-    var year = a.getFullYear();
-    var month = months[a.getMonth()];
-    var date = a.getDate();
+    //var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+    //var year = a.getFullYear();
+    //var month = months[a.getMonth()];
+    //var date = a.getDate();
     var hour = a.getHours();
     var min = a.getMinutes();
-    var time = date + ' ' + month + ' ' + year + ' ' + hour + ':' + min ;
+    // modify these values to adjust to what you need
+    var time = hour + ':' + min ;
     return time;
-  }
-
-
-
-  // ! FIX THIS!!!!!!!
-
-
-  currentTime = (offset) => {
-    // create Date object for current location
-    var d = new Date();
-
-    // convert to msec
-    // add local time zone offset
-    // get UTC time in msec
-    var utc = d.getTime() + (d.getTimezoneOffset() * 60000);
-    console.log(utc)
-
-    // create new Date object for different city
-    // using supplied offset
-    var nd = new Date(utc + (3600000*offset));
-
-    // return time as a string
-    return nd.toLocaleString();
   }
 
   getWeather = () => {
@@ -69,7 +48,6 @@ class WeatherCard extends Component {
             data: data,
             loaded: true,
             name: data.name,
-            time: this.currentTime(data.timezone),
             temperature: data.main.temp,
             feelsLike: data.main.feels_like,
             high: data.main.temp_max,
@@ -77,12 +55,11 @@ class WeatherCard extends Component {
             weather: data.weather[0].main,
             description: data.weather[0].description,
             icon: data.weather[0].icon,
-            country: data.sys.country,
+            country: getCountryName(data.sys.country),
             sunrise: this.timeConverter(data.sys.sunrise),
             sunset: this.timeConverter(data.sys.sunset)
             //name, temperature, feelsLike, high, low, weather, description, icon, country, sunrise, sunset
         })
-        console.log(data)
     })
     .catch(error => {
         console.log(error)
@@ -106,13 +83,12 @@ class WeatherCard extends Component {
                 <div className="cardContent">
                     <DelCard delCard={this.props.delCard.bind(this, this.props.id)} />
                     <h1>{this.state.name}</h1>
-                    <h2>Country: {this.state.country}</h2>
-                    <img src={`http://openweathermap.org/img/wn/${this.state.icon}@2x.png`} alt="weather icon" />
-                    <h1>{Math.round(this.state.temperature)}&#176;</h1>
+                    <h2>{this.state.country}</h2>
+                    <img src={require(`../icons/custom/02d.svg`)} alt="weather icon" />
+                    <h1 className="temph1">{Math.round(this.state.temperature)}&#176;</h1>
                     <h2 style={{textTransform: 'capitalize'}}>{this.state.description}</h2>
                     <h3>Feels like: {Math.round(this.state.feelsLike)}&#176;</h3>
-                    <h3>High: {Math.round(this.state.high)}&#176;</h3>
-                    <h3>Low: {Math.round(this.state.low)}&#176;</h3>
+                    <h3><div className="split">High: {Math.round(this.state.high)}&#176;</div><div className="split">Low: {Math.round(this.state.low)}&#176;</div></h3>
                     <h3>Sunrise: {this.state.sunrise}</h3>
                     <h3>Sunset: {this.state.sunset}</h3>
                 </div>
