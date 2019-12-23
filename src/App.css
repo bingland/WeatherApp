@@ -75,7 +75,7 @@
 .wCard {
   height: 600px;
   width: 300px;
-  margin: 20px;
+  margin: 10px;
   position: relative;
   padding: 10px;
   display: grid;
@@ -87,6 +87,11 @@
   box-shadow: 10px 10px 19px 5px rgba(0,0,0,0.08);
   cursor: pointer;
   flex: 0 0 auto;
+  transform: scale(0.95)
+}
+
+.activatedCard {
+  transform: none;
 }
 
 /* Weather Card */

@@ -61,12 +61,22 @@ class Weather extends Component {
     })
   }
 
+  activateCard = (e) => {
+    if(e.target.classList.contains('wCard') && !e.target.classList.contains('activatedCard')) {
+      e.target.classList.add('activatedCard')
+    } else if (e.target.classList.contains('wCard') && e.target.classList.contains('activatedCard')) {
+      e.target.classList.remove('activatedCard')
+    }
+    
+  }
+
   render() {
+
     return this.state.cards.map((card) => {
       if (card.type === 'card') {
-        return <div className="wCard weatherCard"><WeatherCard name={card.name} key={card.id} id={card.id} delCard={this.delCard} /></div>
+        return <div className="wCard weatherCard" onClick={this.activateCard}><WeatherCard name={card.name} key={card.id} id={card.id} delCard={this.delCard} /></div>
       } else if (card.type === 'entry') {
-        return <div className="wCard entryCard"><EntryCard key={card.id} id={card.id} addCard={this.addCard} delCard={this.delCard} /></div>
+        return <div className="wCard entryCard" onClick={this.activateCard}><EntryCard key={card.id} id={card.id} addCard={this.addCard} delCard={this.delCard} /></div>
       } else {
         return <p>Card type error.</p>
       }
