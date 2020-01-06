@@ -43,6 +43,7 @@ class Weather extends Component {
   } 
 
   delCard = (id) => {
+    // TODO: take the information from the cards and dont call the API
     console.log('deleting card' + id)
     this.setState({
       cards: [...this.state.cards.filter(card => card.id !== id)]
