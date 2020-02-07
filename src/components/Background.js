@@ -6,12 +6,15 @@ class Background extends React.Component {
     // const ctx = canvas.getContext("2d")
   }
 
+  // Video for rain
+  // <video width="100%" autoPlay loop muted>
+  //   <source src={require('../video/rain3.mp4')} type="video/mp4" />
+  // </video>
+  
   render() {
     return(
       <div className="background">
-        <video width="100%" autoPlay loop muted>
-          <source src={require('../video/rain3.mp4')} type="video/mp4" />
-        </video>
+        
       </div>
     )
   }
