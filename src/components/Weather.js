@@ -13,14 +13,23 @@ class Weather extends Component {
     ]
   }
 
-  addCard = (location, theid) => {
+            //name, country, icon, temperature, description, feelsLike, high, low, sunrise, sunset, id
+  addCard = (name, country, icon, temperature, description, feelsLike, high, low, sunrise, sunset, theid) => {
     //replace the entry card with add card
-    // ! FIX DUPLICATION BUG
-    console.log(theid)
+    console.log(`${name} ${country} ${icon} ${temperature} ${description} ${feelsLike} ${high} ${low} ${sunrise} ${sunset} ${theid} `)
     let newArr = this.state.cards
     let newCard = {
       type: 'card',
-      name: location,
+      name: name,
+      country: country,
+      icon: icon,
+      temperature: temperature,
+      description: description,
+      feelsLike: feelsLike,
+      high: high,
+      low: low,
+      sunrise: sunrise,
+      sunset: sunset,
       id: theid
     }
     newArr.splice((theid-1), 1, newCard)
@@ -44,6 +53,8 @@ class Weather extends Component {
 
   delCard = (id) => {
     // TODO: take the information from the cards and dont call the API
+    // ! Combine the WeatherCard and Weather components so that you store the info in the Weather component, not the WeatherCard component
+    // ! look at entrycard. it calls the addcard function. pass the data on that way.
     console.log('deleting card' + id)
     this.setState({
       cards: [...this.state.cards.filter(card => card.id !== id)]
@@ -72,10 +83,10 @@ class Weather extends Component {
   }
 
   render() {
-
+    //name, country, icon, temperature, description, feelsLike, high, low, sunrise, sunset, id
     return this.state.cards.map((card) => {
       if (card.type === 'card') {
-        return <div className="wCard weatherCard" onClick={this.activateCard}><WeatherCard name={card.name} key={card.id} id={card.id} delCard={this.delCard} /></div>
+        return <div className="wCard weatherCard" onClick={this.activateCard}><WeatherCard name={card.name} country={card.country} icon={card.icon} temperature={card.temperature} description={card.description} feelsLike={card.feelsLike} high={card.high} low={card.low} sunrise={card.sunrise} sunset={card.sunset} key={card.id} id={card.id} delCard={this.delCard} /></div>
       } else if (card.type === 'entry') {
         return <div className="wCard entryCard" onClick={this.activateCard}><EntryCard key={card.id} id={card.id} addCard={this.addCard} delCard={this.delCard} /></div>
       } else {
