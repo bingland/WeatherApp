@@ -52,9 +52,6 @@ class Weather extends Component {
   } 
 
   delCard = (id) => {
-    // TODO: take the information from the cards and dont call the API
-    // ! Combine the WeatherCard and Weather components so that you store the info in the Weather component, not the WeatherCard component
-    // ! look at entrycard. it calls the addcard function. pass the data on that way.
     console.log('deleting card' + id)
     this.setState({
       cards: [...this.state.cards.filter(card => card.id !== id)]

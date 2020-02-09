@@ -10,7 +10,7 @@
   width: 100%;
   height: 100%;
   z-index: -9999px;
-  position: absolute;
+  position: fixed;
   overflow: hidden;
   background: linear-gradient(42deg, rgba(102,43,142,1) 0%, rgba(253,29,29,1) 50%, rgba(252,176,69,1) 100%);
 }
@@ -28,7 +28,7 @@
   justify-content: center;
   height: 100vh;
   flex-wrap: nowrap;
-  overflow-x: auto;
+  overflow-x: scroll;
 }
 
 .addButton {

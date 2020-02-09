@@ -19,6 +19,14 @@ class App extends Component {
     this.child.current.addEntryCard()
   }
   
+  // TODO: fix this
+  /*
+  onWheel = (e) => {
+    if (e.deltaY > 0) document.querySelector('.interface').scrollLeft += 100;
+    else document.querySelector('.interface').scrollLeft -= 100;
+  }
+  */ // there is an onWheel listener for components in react
+  
   render () {
     return (
       <div className="App">
@@ -26,7 +34,7 @@ class App extends Component {
         <Background />
 
         <div className="interface">
-          <Weather ref={this.child}/>
+          <Weather ref={this.child} />
           <button className="addButton" onClick={this.onClick}>+</button>
         </div>
       </div>
